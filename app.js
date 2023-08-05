@@ -17,10 +17,11 @@ document.querySelectorAll('.cell').forEach((cell, o) => {
                 checkWinner.forEach(index => {
                     //highlight winner
                     document.querySelectorAll('.cell')[index].classList.add('winner');
+                    
 
                 });
                 score[player]++; // score increases for player
-                document.querySelector(`#player-${player.toLowerCase()}-score p`).textContent = score[currentPlayer]; // Updates the score display
+                document.querySelector(`#player-${player.toLowerCase()}-score p`).textContent = score[player]; // Updates the score display
 
             } else {
                 // if there is not a winner yet, switch to other player.
@@ -40,6 +41,21 @@ document.querySelector('#reset').addEventListener('click', () => {
 
     });
 });
+
+//query html ID reset
+document.querySelector('#reset-score').addEventListener('click', () => {
+    score = {'X' : 0, 'O' :0} //reset score
+    document.querySelector('#player-x-score p','#player-o-score p').textContent = 0;
+    board = Array(9).fill(null); //resets the game board
+    player = 'X';
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.textContent = ''; //clears all cells
+        cell.classList.remove('winner');
+
+    });
+
+
+})
 
 function winner(board) {
     // Define the 8 possible winning lines on the board
