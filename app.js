@@ -4,8 +4,6 @@ let player = 'X'; //sets the initial player to "x"
 let score = {'X' : 0, 'O' :0}; // sets the score for both X and O players to 0
 
 
-//let docElement = document.querySelectorAll('.cell').forEach((cell) => console.log(Element));
-
 document.querySelectorAll('.cell').forEach((cell, o) => {
     cell.addEventListener('click', () => {
         //current player makes a move
@@ -32,6 +30,17 @@ document.querySelectorAll('.cell').forEach((cell, o) => {
     });
 });
 
+document.querySelector('#reset').addEventListener('click', () => {
+    // Click reset button
+    board = Array(9).fill(null); //resets the game board
+    player = 'X';
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.textContent = ''; //clears all cells
+        cell.classList.remove('winner');
+
+    });
+});
+
 function winner(board) {
     // Define the 8 possible winning lines on the board
     const lines = [
@@ -41,7 +50,8 @@ function winner(board) {
         [1, 4, 7],
         [2, 5, 8],
         [0, 4, 8],
-        [2, 4, 6]
+        [2, 4, 6],
+        [0, 3, 6]
     ];
     for(let line of lines) {
         // check each line to see if all cells are marked by the same player
@@ -52,5 +62,7 @@ function winner(board) {
     }
     return null; // if there's no winner.
 }
+
+
 
 

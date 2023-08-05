@@ -49,3 +49,7 @@ body {
 .score-number {
     font-size: 3rem;
 }
+
+.winner {
+    background-color: green;
+}
